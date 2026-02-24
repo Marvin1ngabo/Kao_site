@@ -28,6 +28,25 @@ const Navbar = () => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const navbarHeight = 80; // Approximate navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -40,7 +59,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3">
+        <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-3">
           <img src={kasoLogo} alt="Kaso Foundation" className="h-12 w-auto" />
         </a>
 
@@ -50,6 +69,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-semibold text-foreground/90 hover:text-foreground transition-colors relative group"
             >
               {link.label}
@@ -108,7 +128,7 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {link.label}
