@@ -33,10 +33,10 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled
-          ? "bg-background/90 backdrop-blur-xl shadow-lg"
-          : "bg-transparent"
+          ? "bg-background/95 backdrop-blur-xl shadow-lg border-border/50"
+          : "bg-background/80 backdrop-blur-md shadow-sm border-border/20"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
@@ -50,7 +50,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors relative group"
+              className="text-sm font-semibold text-foreground/90 hover:text-foreground transition-colors relative group"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
@@ -61,7 +61,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setDark(!dark)}
-            className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+            className="p-2 rounded-full bg-muted/80 hover:bg-muted transition-colors shadow-sm"
             aria-label="Toggle theme"
           >
             <AnimatePresence mode="wait">
@@ -79,7 +79,7 @@ const Navbar = () => {
 
           <a
             href="#donate"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity shadow-md"
           >
             Donate Now
           </a>
