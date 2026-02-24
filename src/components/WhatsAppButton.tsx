@@ -3,7 +3,8 @@ import { MessageCircle } from "lucide-react";
 
 const WhatsAppButton = () => {
   const phoneNumber = "250788871118"; // WhatsApp format without + or spaces
-  const whatsappUrl = `https://wa.me/${phoneNumber}`;
+  const message = "Hello! I found you through www.kasofoundation.org and would like to learn more about your programs.";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <motion.a
